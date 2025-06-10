@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-const apiKey = "appolojawa";
+const apiKey = "appolosigmabet";
 
 app.use(express.static(__dirname));
 

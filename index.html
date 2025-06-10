@@ -1,13 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login API Key</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+    input {
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #0070f3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #0059c1;
+    }
+  </style>
 </head>
 <body>
-  <h2>Masukkan API Key</h2>
-  <form method="GET" action="/">
-    <input type="text" name="apikey" required />
-    <button type="submit">Login</button>
-  </form>
+  <div class="container">
+    <h2>Masukkan API Key</h2>
+    <form method="GET" action="/">
+      <input type="text" name="apikey" placeholder="API Key" required />
+      <button type="submit">Cek</button>
+    </form>
+  </div>
 </body>
 </html>

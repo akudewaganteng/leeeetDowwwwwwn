@@ -45,10 +45,30 @@
 <body>
   <div class="container">
     <h2>Masukkan API Key</h2>
-    <form method="GET" action="/">
-      <input type="text" name="apikey" placeholder="API Key" required />
+    <form id="form">
+      <input type="text" id="apikey" placeholder="API Key" required />
       <button type="submit">Cek</button>
     </form>
   </div>
+
+  <script>
+    document.getElementById("form").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const key = document.getElementById("apikey").value.trim();
+
+      try {
+        const res = await fetch(`/check?apikey=${encodeURIComponent(key)}`);
+        const data = await res.json();
+
+        if (data.valid) {
+          alert("API key benar");
+        } else {
+          alert("API key salah");
+        }
+      } catch (err) {
+        alert("Terjadi kesalahan");
+      }
+    });
+  </script>
 </body>
 </html>

@@ -2,23 +2,25 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-const apiKey = "appolodb"; // ubah sesuai kebutuhan
+const apiKey = "apikey123"; // Ganti sesuai kebutuhan
 
+// Serve static file (index.html)
 app.use(express.static(__dirname));
 
+// Cek API key via GET
 app.get("/", (req, res) => {
-  const inputKey = req.query.apikey;
+  const key = req.query.apikey;
 
-  if (!inputKey) {
-    // jika tidak ada apikey di URL → tampilkan index.html
-    res.sendFile(path.join(__dirname, "index.html"));
-  } else if (inputKey === apiKey) {
-    // jika benar
-    res.send(`<script>
-      document.body.innerHTML = '<h1>API key benar</h1><a href="/">Kembali</a>';
-    </script>`);
+  if (!key) {
+    // Jika tidak ada query, kirim index.html
+    return res.sendFile(path.join(__dirname, "index.html"));
+  }
+
+  if (key === apiKey) {
+    // API key benar
+    res.send(`<script>alert("API key benar"); window.location.href="/";</script>`);
   } else {
-    // jika salah
+    // API key salah
     res.send(`<script>alert("API key salah"); window.location.href="/";</script>`);
   }
 });

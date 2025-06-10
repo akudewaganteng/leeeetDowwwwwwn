@@ -1,21 +1,24 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const path = require("path");
 
 const app = express();
-const apiKey = "appolodb"; // ganti sesuai kebutuhan
+const apiKey = "appolodb"; // ubah sesuai kebutuhan
 
-// Izinkan file statis (seperti index.html)
 app.use(express.static(__dirname));
-app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post("/login", (req, res) => {
-  const inputKey = req.body.apikey;
-  if (inputKey === apiKey) {
+app.get("/", (req, res) => {
+  const inputKey = req.query.apikey;
+
+  if (!inputKey) {
+    // jika tidak ada apikey di URL → tampilkan index.html
+    res.sendFile(path.join(__dirname, "index.html"));
+  } else if (inputKey === apiKey) {
+    // jika benar
     res.send(`<script>
       document.body.innerHTML = '<h1>API key benar</h1><a href="/">Kembali</a>';
     </script>`);
   } else {
+    // jika salah
     res.send(`<script>alert("API key salah"); window.location.href="/";</script>`);
   }
 });

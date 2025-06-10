@@ -3,14 +3,11 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 const app = express();
-const apiKey = "apikey123"; // ganti sesuai keinginan
+const apiKey = "appolodb"; // ganti sesuai kebutuhan
 
+// Izinkan file statis (seperti index.html)
+app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname)); // supaya bisa akses index.html
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
 
 app.post("/login", (req, res) => {
   const inputKey = req.body.apikey;
